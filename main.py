@@ -10,6 +10,8 @@ import time
 import pandas as pd
 
 st.set_page_config(layout="wide")
+connection = None
+cursor = None
 try:
   connection = podbc.connect("Driver={ODBC Driver 17 for SQL Server};"
                                "Server=PONNU_LAP;"
@@ -20,10 +22,13 @@ try:
   print("Connection successful")
 except Exception as e:
     print(f"Connection failed: {e}")
-  
-os.environ['GROQ_API_KEY'] = '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'
-client = Groq()
 
+if connection:
+  os.environ['GROQ_API_KEY'] = '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'
+  client = Groq()
+else:
+    print("Skipping Groq client initialization due to failed SQL Server connection.")
+  
 img1=Image.open('ai1.jpg')
 img1_resize=img1.resize((700,150))
 st.image(img1_resize,use_container_width=False)
