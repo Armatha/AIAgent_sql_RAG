@@ -10,13 +10,17 @@ import time
 import pandas as pd
 
 st.set_page_config(layout="wide")
-
-connection = podbc.connect("Driver={ODBC Driver 17 for SQL Server};"
+try:
+  connection = podbc.connect("Driver={ODBC Driver 17 for SQL Server};"
                                "Server=PONNU_LAP;"
                                "Database=Demo;"
-                               "Trusted_Connection=yes")
-cursor = connection.cursor()
-
+                               "UID=streamlit_user;"
+                               "PWD=Streamlit@0123;")
+  cursor = connection.cursor()
+  print("Connection successful")
+except Exception as e:
+    print(f"Connection failed: {e}")
+  
 os.environ['GROQ_API_KEY'] = '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'
 client = Groq()
 
