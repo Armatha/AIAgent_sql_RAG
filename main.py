@@ -10,7 +10,7 @@ import pandas as pd
 st.set_page_config(layout="wide")
 
 connection = podbc.connect("Driver={ODBC Driver 17 for SQL Server};"
-                               "Server=PONNU_LAP;"
+                               "Server=192.168.1.4;"
                                "Database=Demo;"
                                "UID=streamlit_user;"
                                "PWD=Streamlit@0123;")
